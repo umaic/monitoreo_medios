@@ -9,15 +9,30 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var site_service_1 = require('./site.service');
 var AppComponent = (function () {
-    function AppComponent() {
+    function AppComponent(siteService) {
+        this.siteService = siteService;
     }
+    AppComponent.prototype.getSites = function () {
+        var _this = this;
+        this.siteService.getSites().then(function (sites) { return _this.sites = sites; });
+    };
+    AppComponent.prototype.ngOnInit = function () {
+        this.getSites();
+    };
+    AppComponent.prototype.onChange = function (site) {
+        this.selectedSite = site;
+        console.log(this.selectedSite);
+    };
     AppComponent = __decorate([
         core_1.Component({
+            moduleId: module.id,
             selector: 'my-app',
-            template: '<h1>Entrenar!!!!</h1>'
+            templateUrl: 'site-select.html',
+            providers: [site_service_1.SiteService]
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [site_service_1.SiteService])
     ], AppComponent);
     return AppComponent;
 }());

@@ -10,9 +10,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var site_service_1 = require('./site.service');
+var news_service_1 = require('./news.service');
 var AppComponent = (function () {
-    function AppComponent(siteService) {
+    //@Input() date = 0;
+    function AppComponent(siteService, newsService) {
         this.siteService = siteService;
+        this.newsService = newsService;
+        this.spider = '';
+        this.date = '2016-9-15';
     }
     AppComponent.prototype.getSites = function () {
         var _this = this;
@@ -21,18 +26,22 @@ var AppComponent = (function () {
     AppComponent.prototype.ngOnInit = function () {
         this.getSites();
     };
-    AppComponent.prototype.onChange = function (site) {
-        this.selectedSite = site;
-        console.log(this.selectedSite);
+    AppComponent.prototype.onSiteChange = function (spider) {
+        this.spider = spider;
+    };
+    AppComponent.prototype.onDoClick = function () {
+        if (this.spider != '') {
+            this.newsService.getNews(this.spider, this.date);
+        }
     };
     AppComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
             selector: 'my-app',
             templateUrl: 'site-select.html',
-            providers: [site_service_1.SiteService]
+            providers: [site_service_1.SiteService, news_service_1.NewsService]
         }), 
-        __metadata('design:paramtypes', [site_service_1.SiteService])
+        __metadata('design:paramtypes', [site_service_1.SiteService, news_service_1.NewsService])
     ], AppComponent);
     return AppComponent;
 }());

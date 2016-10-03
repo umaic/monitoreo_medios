@@ -101,17 +101,16 @@ class MySQLStorePipeline(object):
     def process_item(self, item, spider):
         # run db query in thread pool
         query = self.dbpool.runInteraction(self._conditional_insert, item)
-        query.addErrback(self.handle_error)
         return item
 
     def _conditional_insert(self, tx, item):
         # create record if doesn't exist.
         # all this block run on it's own thread
-        tx.execute("SELECT * FROM record WHERE title = %s", (item['title'], ))
+        tx.execute("SELECT * FROM news WHERE title = %s", (item['title'], ))
         result = tx.fetchone()
         if not result:
             tx.execute(\
-                "INSERT INTO record (title, link, description, labels, source, cdate) "
+                "INSERT INTO news (title, link, description, labels, source, cdate) "
                 "VALUES (%s, %s, %s, %s, %s, %s)",
                  (item['title'],
                  item['link'],

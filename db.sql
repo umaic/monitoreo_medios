@@ -1,8 +1,4 @@
---
--- Table structure for table `record`
---
-
-CREATE TABLE `record` (
+CREATE TABLE `news` (
   `id` int(11) NOT NULL,
   `title` text NOT NULL,
   `link` text NOT NULL,
@@ -19,7 +15,7 @@ CREATE TABLE `record` (
 --
 -- Indexes for table `record`
 --
-ALTER TABLE `record`
+ALTER TABLE `news`
   ADD PRIMARY KEY (`id`);
 
 --

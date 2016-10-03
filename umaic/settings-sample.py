@@ -10,9 +10,9 @@ LOG_LEVEL="INFO"
 SPIDER_MODULES = ['umaic.spiders']
 NEWSPIDER_MODULES = 'umaic.spiders'
 USER_AGENT = '%s' % (BOT_NAME)
-DB_NAME = ''
-DB_USER = ''
-DB_PASSWD = ''
+DB_NAME = 'oraculo'
+DB_USER = 'oraculo'
+DB_PASSWD = 'oraculo'
 
 ITEM_PIPELINES = {
         'umaic.pipelines.DuplicatesPipeline' : 100,

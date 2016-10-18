@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent }   from './app.component';
 import { FormsModule }   from '@angular/forms';
 import { HttpModule }    from '@angular/http';
+import { NewsService }          from './news.service';
 
 @NgModule({
   imports:      [

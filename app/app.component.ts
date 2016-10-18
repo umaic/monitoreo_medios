@@ -1,18 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Site } from './site';
+import { News } from './news';
 import { SiteService } from './site.service';
 import { NewsService } from './news.service';
 
 @Component({
   moduleId: module.id,
   selector: 'my-app',
-  templateUrl: 'site-select.html',
+  templateUrl: 'dashboard.html',
   providers: [SiteService,NewsService]
 })
 
 export class AppComponent implements OnInit {
   sites: Site[];
+  news: News[];
   spider:string = '';
   date:string = '2016-9-15';
   //@Input() date = 0;
@@ -33,10 +35,11 @@ export class AppComponent implements OnInit {
     this.spider = spider;
   }
 
-  onDoClick(): void {
+  getNews(): void {
     if (this.spider != '')
     {
-        this.newsService.getNews(this.spider, this.date);
+        this.newsService.getNews(this.spider, this.date).then(news => this.news = news);
+        console.log(this.news)
     }
   }
 }

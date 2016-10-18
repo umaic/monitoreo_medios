@@ -29,16 +29,18 @@ var AppComponent = (function () {
     AppComponent.prototype.onSiteChange = function (spider) {
         this.spider = spider;
     };
-    AppComponent.prototype.onDoClick = function () {
+    AppComponent.prototype.getNews = function () {
+        var _this = this;
         if (this.spider != '') {
-            this.newsService.getNews(this.spider, this.date);
+            this.newsService.getNews(this.spider, this.date).then(function (news) { return _this.news = news; });
+            console.log(this.news);
         }
     };
     AppComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
             selector: 'my-app',
-            templateUrl: 'site-select.html',
+            templateUrl: 'dashboard.html',
             providers: [site_service_1.SiteService, news_service_1.NewsService]
         }), 
         __metadata('design:paramtypes', [site_service_1.SiteService, news_service_1.NewsService])

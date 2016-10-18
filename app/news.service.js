@@ -18,11 +18,13 @@ var NewsService = (function () {
         this.doUrl = 'news';
     }
     NewsService.prototype.getNews = function (spider, date) {
-        this.http.get(this.doUrl + '/get/' + spider + '/' + date)
+        return this.http.get(this.doUrl + '/get/' + spider + '/' + date)
             .toPromise()
-            .then(function (response) { return response.json().data; })
+            .then(function (response) { return response.json(); })
             .catch(this.handleError);
-        //return Promise.resolve(SITES);
+    };
+    NewsService.prototype.handleError = function (error) {
+        return Promise.reject(error.message || error);
     };
     NewsService = __decorate([
         core_1.Injectable(), 

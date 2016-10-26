@@ -4,12 +4,13 @@ import { Site } from './site';
 import { News } from './news';
 import { SiteService } from './site.service';
 import { NewsService } from './news.service';
+import { Auth }        from './auth.service';
 
 @Component({
   moduleId: module.id,
   selector: 'my-app',
   templateUrl: 'dashboard.html',
-  providers: [SiteService,NewsService]
+  providers: [SiteService,NewsService,Auth]
 })
 
 export class AppComponent implements OnInit {
@@ -21,7 +22,9 @@ export class AppComponent implements OnInit {
 
   constructor(
     private siteService: SiteService,
-    private newsService: NewsService) { }
+    private newsService: NewsService,
+    private auth: Auth
+  ) { }
 
   getSites(): void {
     this.siteService.getSites().then(sites => this.sites = sites);
@@ -38,8 +41,10 @@ export class AppComponent implements OnInit {
   getNews(): void {
     if (this.spider != '')
     {
-        this.newsService.getNews(this.spider, this.date).then(news => this.news = news);
-        console.log(this.news)
+        this.newsService.getNews(this.spider, this.date).then(news => {
+            this.news = news;
+            //$('#news_table').DataTable();
+            });
     }
   }
 }

@@ -2,5 +2,6 @@
 // logica sobre objeto site
 
 export interface News {
-  title: string
+  title: string,
+  cdate: string
 }

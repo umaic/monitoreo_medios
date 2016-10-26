@@ -24,6 +24,7 @@ var NewsService = (function () {
             .catch(this.handleError);
     };
     NewsService.prototype.handleError = function (error) {
+        console.log('aa');
         return Promise.reject(error.message || error);
     };
     NewsService = __decorate([

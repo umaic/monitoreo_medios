@@ -20,6 +20,7 @@ export class NewsService {
     }
 
     private handleError(error: any): Promise<any> {
+        console.log('aa');
         return Promise.reject(error.message || error);
     }
 }

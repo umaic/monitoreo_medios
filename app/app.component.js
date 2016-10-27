@@ -9,45 +9,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var site_service_1 = require('./site.service');
-var news_service_1 = require('./news.service');
 var auth_service_1 = require('./auth.service');
 var AppComponent = (function () {
-    //@Input() date = 0;
-    function AppComponent(siteService, newsService, auth) {
-        this.siteService = siteService;
-        this.newsService = newsService;
+    function AppComponent(auth) {
         this.auth = auth;
-        this.spider = '';
-        this.date = '2016-9-15';
     }
-    AppComponent.prototype.getSites = function () {
-        var _this = this;
-        this.siteService.getSites().then(function (sites) { return _this.sites = sites; });
-    };
-    AppComponent.prototype.ngOnInit = function () {
-        this.getSites();
-    };
-    AppComponent.prototype.onSiteChange = function (spider) {
-        this.spider = spider;
-    };
-    AppComponent.prototype.getNews = function () {
-        var _this = this;
-        if (this.spider != '') {
-            this.newsService.getNews(this.spider, this.date).then(function (news) {
-                _this.news = news;
-                //$('#news_table').DataTable();
-            });
-        }
-    };
     AppComponent = __decorate([
         core_1.Component({
-            moduleId: module.id,
             selector: 'my-app',
-            templateUrl: 'dashboard.html',
-            providers: [site_service_1.SiteService, news_service_1.NewsService, auth_service_1.Auth]
+            templateUrl: 'app/login.html',
+            providers: [auth_service_1.Auth]
         }), 
-        __metadata('design:paramtypes', [site_service_1.SiteService, news_service_1.NewsService, auth_service_1.Auth])
+        __metadata('design:paramtypes', [auth_service_1.Auth])
     ], AppComponent);
     return AppComponent;
 }());

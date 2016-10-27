@@ -14,6 +14,8 @@ var forms_1 = require('@angular/forms');
 var http_1 = require('@angular/http');
 var angular2_jwt_1 = require('angular2-jwt');
 var app_component_1 = require('./app.component');
+var dashboard_component_1 = require('./dashboard.component');
+var app_routes_1 = require('./app.routes');
 var AppModule = (function () {
     function AppModule() {
     }
@@ -22,9 +24,10 @@ var AppModule = (function () {
             imports: [
                 platform_browser_1.BrowserModule,
                 forms_1.FormsModule,
-                http_1.HttpModule
+                http_1.HttpModule,
+                app_routes_1.routing
             ],
-            declarations: [app_component_1.AppComponent],
+            declarations: [app_component_1.AppComponent, dashboard_component_1.DashboardComponent],
             bootstrap: [app_component_1.AppComponent],
             providers: [
                 angular2_jwt_1.AUTH_PROVIDERS

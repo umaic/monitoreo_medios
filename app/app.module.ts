@@ -5,6 +5,8 @@ import { HttpModule }       from '@angular/http';
 import { AUTH_PROVIDERS }   from 'angular2-jwt';
 import { AppComponent }     from './app.component';
 import { DashboardComponent }     from './dashboard.component';
+import { DiccionarioComponent }     from './diccionario.component';
+
 import { NewsService }      from './news.service';
 
 import { routing,
@@ -17,7 +19,11 @@ import { routing,
         HttpModule,
         routing
     ],
-    declarations: [AppComponent, DashboardComponent],
+    declarations: [
+        AppComponent,
+        DashboardComponent,
+        DiccionarioComponent
+    ],
     bootstrap: [AppComponent],
     providers: [
         AUTH_PROVIDERS

@@ -20,6 +20,9 @@ require dirname( __FILE__ ).'/config.php';
 
 $service_dir = $config['services'];
 
+// Parametro $m = modulo
+// Parametro $a = accion
+// Parametro $p = parametros separados por |
 extract($_GET);
 
 header('Content-Type: application/json');
@@ -38,6 +41,22 @@ switch ($m) {
 
             default:
                 # code...
+                break;
+        }
+        break;
+
+    case 'diccionario':
+        include_once($service_dir.'/diccionario.php');
+
+        $service = new DiccionarioService();
+
+        switch ($a) {
+            case 'get':
+                    echo $service->get($p);
+                break;
+
+            default:
+                    echo $service->save($p);
                 break;
         }
         break;

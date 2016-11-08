@@ -7,3 +7,5 @@
 5. A partir de ./libraries/mysql-sample.php crear mysql.php y cambiar valores
 6. Colocar permisos de escritura para:
   - ./cache
+7. Debe estar instalado Node.js y npm
+8. Clonar el repositorio y ejecutar $npm install

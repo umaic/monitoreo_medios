@@ -5,6 +5,7 @@ import { News } from './news';
 import { SiteService } from './site.service';
 import { NewsService } from './news.service';
 import { Auth }        from './auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   moduleId: module.id,
@@ -23,7 +24,9 @@ export class DashboardComponent implements OnInit {
   constructor(
     private siteService: SiteService,
     private newsService: NewsService,
-    private auth: Auth
+    private auth: Auth,
+    private router: Router,
+
   ) { }
 
   getSites(): void {
@@ -46,5 +49,10 @@ export class DashboardComponent implements OnInit {
             //$('#news_table').DataTable();
             });
     }
+  }
+
+  gotoDiccionario(): void {
+    let link = ['/diccionario'];
+    this.router.navigate(link);
   }
 }

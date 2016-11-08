@@ -16,6 +16,8 @@ class DiccionarioService
     private $meses;
     private $config;
     private $lib_dir;
+    private $table;
+    private $key;
 
     function __construct() {
 
@@ -28,6 +30,8 @@ class DiccionarioService
         $this->config = $config;
         $this->db = Factory::create('mysql');
         $this->meses = array('','Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic');
+        $this->table = 'user_parameter';
+        $this->key = 'diccionario';
     }
 
     /**
@@ -37,14 +41,19 @@ class DiccionarioService
      */
     public function get($auth0_token) {
 
-        $sql = "SELECT diccionario AS text FROM user_parameters WHERE auth0_token = '$auth0_token'";
+        $sql = "SELECT `value` AS text FROM $this->table WHERE `key`='$this->key' AND `auth0_token` = '$auth0_token'";
         $rs = $this->db->open($sql);
 
         $row = $this->db->FO($rs);
 
-        $text = (isset($row[0])) ? $row[0]->text : '';
+        $text = '';
+        $update = 0;
+        if (isset($row->text)) {
+            $text = $row->text;
+            $update = 1;
+        }
 
-        return json_encode(compact('text'));
+        return json_encode(compact('text','update'));
     }
 
     /**
@@ -52,16 +61,21 @@ class DiccionarioService
      *
      * @params array Parameters arary
      */
-    public function save() {
+    public function save($parameters) {
 
-        $sql = 'SELECT diccionario AS text FROM user_parameters WHERE user_token = '.$token;
-        $rs = $this->db->open($sql);
+        list($auth0_token,$value,$update) = explode('|', $parameters);
 
-        $row = $this->db->FO($rs);
+        $value = nl2br(htmlentities($value, ENT_QUOTES, 'UTF-8'));
 
-        $text = (isset($row[0])) ? $row[0]->text : '';
+        if (empty($update)) {
+            $sql = "INSERT INTO $this->table (`auth0_token`,`key`,`value`) VALUES ('$auth0_token','$this->key','$value')";
+        } else {
+            $sql = "UPDATE $this->table SET value = '$value' WHERE key='$this->key' AND auth0_token = '$auth0_token'";
+        }
 
-        return json_encode(compact('text'));
+        $this->db->Execute($sql);
+
+        return json_encode('1');
     }
 
 }

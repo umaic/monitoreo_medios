@@ -15,7 +15,7 @@
 
 	# Rewrite all other URLs to index.php/URL
 
-    RewriteRule ^([a-z]+)/([a-z]+)/([a-z0-9-]+)/([a-z0-9-]+)$ index.php?m=$1&a=$2&s=$3&d=$4 [L,QSA]
+    RewriteRule ^([a-z]+)/([a-z]+)/(.+)$ index.php?m=$1&a=$2&p=$3 [L,QSA]
 </IfModule>
 
 # Protect the htaccess from being viewed

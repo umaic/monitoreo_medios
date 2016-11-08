@@ -12,12 +12,14 @@ var core_1 = require('@angular/core');
 var site_service_1 = require('./site.service');
 var news_service_1 = require('./news.service');
 var auth_service_1 = require('./auth.service');
+var router_1 = require('@angular/router');
 var DashboardComponent = (function () {
     //@Input() date = 0;
-    function DashboardComponent(siteService, newsService, auth) {
+    function DashboardComponent(siteService, newsService, auth, router) {
         this.siteService = siteService;
         this.newsService = newsService;
         this.auth = auth;
+        this.router = router;
         this.spider = '';
         this.date = '2016-9-15';
     }
@@ -40,6 +42,10 @@ var DashboardComponent = (function () {
             });
         }
     };
+    DashboardComponent.prototype.gotoDiccionario = function () {
+        var link = ['/diccionario'];
+        this.router.navigate(link);
+    };
     DashboardComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
@@ -47,7 +53,7 @@ var DashboardComponent = (function () {
             templateUrl: 'dashboard.html',
             providers: [site_service_1.SiteService, news_service_1.NewsService]
         }), 
-        __metadata('design:paramtypes', [site_service_1.SiteService, news_service_1.NewsService, auth_service_1.Auth])
+        __metadata('design:paramtypes', [site_service_1.SiteService, news_service_1.NewsService, auth_service_1.Auth, router_1.Router])
     ], DashboardComponent);
     return DashboardComponent;
 }());

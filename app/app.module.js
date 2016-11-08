@@ -15,6 +15,7 @@ var http_1 = require('@angular/http');
 var angular2_jwt_1 = require('angular2-jwt');
 var app_component_1 = require('./app.component');
 var dashboard_component_1 = require('./dashboard.component');
+var diccionario_component_1 = require('./diccionario.component');
 var app_routes_1 = require('./app.routes');
 var AppModule = (function () {
     function AppModule() {
@@ -27,7 +28,11 @@ var AppModule = (function () {
                 http_1.HttpModule,
                 app_routes_1.routing
             ],
-            declarations: [app_component_1.AppComponent, dashboard_component_1.DashboardComponent],
+            declarations: [
+                app_component_1.AppComponent,
+                dashboard_component_1.DashboardComponent,
+                diccionario_component_1.DiccionarioComponent
+            ],
             bootstrap: [app_component_1.AppComponent],
             providers: [
                 angular2_jwt_1.AUTH_PROVIDERS

@@ -1,0 +1,12 @@
+ <div *ngIf="diccionario">
+<form>
+    <div class="form-group">
+        <label for="">Editar mi diccionario</label>
+        <textarea [(ngModel)]="diccionario.text" class="form-control" name="text" rows="20" cols="40">{{ diccionario.text }}</textarea>
+        <input type="hidden" value="{{ diccionario.update }}" [(ngModel)]="diccionario.update" name="update">
+    </div>
+    <div class="btn-group" role="group">
+        <button type="button" class="btn btn-primary" (click)="saveDiccionario()"><i class="fa fa-save"></i> Guardar</button>
+    </div>
+</form>
+</div>

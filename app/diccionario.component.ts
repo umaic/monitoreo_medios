@@ -8,7 +8,7 @@ import { Diccionario } from './diccionario';
 
 @Component({
   moduleId: module.id,
-  //selector: 'my-diccionario',
+  selector: 'my-diccionario',
   templateUrl: 'diccionario.html',
   providers: [DiccionarioService]
 })

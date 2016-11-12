@@ -1,19 +1,18 @@
 import { Injectable } from '@angular/core';
-import { Headers, Http } from '@angular/http';
+import { Headers, Http, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import { Diccionario } from './diccionario';
-
 
 @Injectable()
 export class DiccionarioService {
 
-    private headers = new Headers({ 'Content-Type': 'application/json' });
     private doUrl = 'diccionario';
 
-    constructor(private http: Http) { }
+    constructor(private http: Http) {
+    }
 
     getDiccionario(): Promise<Diccionario> {
-        return this.http.get(this.doUrl + '/get/' + localStorage.getItem('id_token'))
+        return this.http.get(this.doUrl + '/get/' + localStorage.getItem('user_id'))
             .toPromise()
             .then(response => response.json() as Diccionario)
             .catch(this.handleError);
@@ -26,12 +25,14 @@ export class DiccionarioService {
 
     saveDiccionario(diccionario: Diccionario) {
 
+        let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' });
+        let options = new RequestOptions({ headers: headers });
+
+        let data='text=' + diccionario.text + '&update=' + diccionario.update;
         //console.log(diccionario.text);
 
-        return this.http.post(this.doUrl + '/save/' + localStorage.getItem('id_token') + '|' + diccionario.text + '|' + diccionario.update, this.headers)
-           .toPromise()
-           .then()
-           .catch(this.handleError);
+        //return this.http.post(this.doUrl + '/save/' + localStorage.getItem('user_id') + '|' + diccionario.text + '|' + diccionario.update, this.headers)
+        return this.http.post(this.doUrl + '/save/' + localStorage.getItem('user_id'), data , options);
     }
 
        /*

@@ -18,7 +18,7 @@ var NewsService = (function () {
         this.doUrl = 'news';
     }
     NewsService.prototype.getNews = function (spider, date) {
-        return this.http.get(this.doUrl + '/get/' + spider + '/' + date)
+        return this.http.get(this.doUrl + '/get/' + spider + '|' + date)
             .toPromise()
             .then(function (response) { return response.json(); })
             .catch(this.handleError);

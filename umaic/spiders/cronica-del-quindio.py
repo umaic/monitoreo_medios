@@ -42,11 +42,12 @@ class CronicaDelQuindioSpider(scrapy.Spider):
 
                 item['description'] = site.xpath('./a/p/text()').extract()[0]
                 item['labels'] = ''
-                item['source'] = 'Cronica del Quindio'
+                item['source'] = self.name
                 item['cdate'] = str(datetime.datetime.now())
                 #item['pdate'] = ''
-
                 items.append(item)
+
+
             except:
                 pass
 

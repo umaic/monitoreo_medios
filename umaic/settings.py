@@ -5,7 +5,7 @@
 #
 #     http://doc.scrapy.org/topics/settings.html
 #
-BOT_NAME = 'umaic'
+BOT_NAME = 'umaic.org'
 LOG_LEVEL="INFO"
 SPIDER_MODULES = ['umaic.spiders']
 NEWSPIDER_MODULES = 'umaic.spiders'
@@ -16,6 +16,5 @@ DB_PASSWD = 'oraculo'
 
 ITEM_PIPELINES = {
         'umaic.pipelines.DuplicatesPipeline' : 100,
-        'umaic.pipelines.FilterWordsPipeline' : 200,
-        'umaic.pipelines.MySQLStorePipeline' : 300
+        'umaic.pipelines.MySQLStorePipeline' : 200
         }

@@ -21,7 +21,7 @@ var DashboardComponent = (function () {
         this.auth = auth;
         this.router = router;
         this.spider = '';
-        this.date = '2016-9-15';
+        this.date = '2016-11-11';
     }
     DashboardComponent.prototype.getSites = function () {
         var _this = this;

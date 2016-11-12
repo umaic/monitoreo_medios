@@ -37,11 +37,11 @@ class DiccionarioService
     /**
      * Get diccionario
      *
-     * @auth0_token string Token del usuario
+     * @user_id string Token del usuario
      */
-    public function get($auth0_token) {
+    public function get($user_id) {
 
-        $sql = "SELECT `value` AS text FROM $this->table WHERE `key`='$this->key' AND `auth0_token` = '$auth0_token'";
+        $sql = "SELECT `value` AS text FROM $this->table WHERE `key`='$this->key' AND `user_id` = '$user_id'";
         $rs = $this->db->open($sql);
 
         $row = $this->db->FO($rs);
@@ -59,20 +59,20 @@ class DiccionarioService
     /**
      * Set diccionario
      *
-     * @params array Parameters arary
+     * @user_id string Token del usuario
+     * @value string Text
+     * @update integer Create or update
      */
-    public function save($parameters) {
+    public function save($user_id,$value,$update) {
 
-        list($auth0_token,$value,$update) = explode('|', $parameters);
-
-        $value = nl2br(htmlentities($value, ENT_QUOTES, 'UTF-8'));
+        //$value = nl2br($value);
 
         if (empty($update)) {
-            $sql = "INSERT INTO $this->table (`auth0_token`,`key`,`value`) VALUES ('$auth0_token','$this->key','$value')";
+            $sql = "INSERT INTO $this->table (`user_id`,`key`,`value`) VALUES ('$user_id','$this->key','$value')";
         } else {
-            $sql = "UPDATE $this->table SET value = '$value' WHERE key='$this->key' AND auth0_token = '$auth0_token'";
+            $sql = "UPDATE $this->table SET `value` = '$value' WHERE `key`='$this->key' AND `user_id` = '$user_id'";
         }
-
+echo $sql;
         $this->db->Execute($sql);
 
         return json_encode('1');

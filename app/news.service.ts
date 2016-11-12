@@ -13,7 +13,7 @@ export class NewsService {
     constructor(private http: Http) { }
 
     getNews(spider: string, date: string): Promise<News[]> {
-        return this.http.get(this.doUrl + '/get/' + spider + '/' + date)
+        return this.http.get(this.doUrl + '/get/' + spider + '|' + date)
             .toPromise()
             .then(response => response.json() as News[])
             .catch(this.handleError);

@@ -18,7 +18,7 @@ export class DashboardComponent implements OnInit {
   sites: Site[];
   news: News[];
   spider:string = '';
-  date:string = '2016-9-15';
+  date:string = '2016-11-11';
   //@Input() date = 0;
 
   constructor(

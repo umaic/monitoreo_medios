@@ -13,11 +13,24 @@ var angular2_jwt_1 = require('angular2-jwt');
 var auth_config_1 = require('./auth.config');
 var Auth = (function () {
     function Auth() {
+        var _this = this;
         // Configure Auth0
         this.lock = new Auth0Lock(auth_config_1.myConfig.clientID, auth_config_1.myConfig.domain, {});
+        // Set userProfile attribute of already saved profile
+        this.userProfile = JSON.parse(localStorage.getItem('profile'));
         // Add callback for lock `authenticated` event
         this.lock.on('authenticated', function (authResult) {
             localStorage.setItem('id_token', authResult.idToken);
+            // Fetch profile information
+            _this.lock.getProfile(authResult.idToken, function (error, profile) {
+                if (error) {
+                    // Handle error
+                    alert(error);
+                    return;
+                }
+                localStorage.setItem('user_id', profile.user_id);
+                _this.userProfile = profile;
+            });
         });
     }
     Auth.prototype.login = function () {
@@ -34,6 +47,8 @@ var Auth = (function () {
     Auth.prototype.logout = function () {
         // Remove token from localStorage
         localStorage.removeItem('id_token');
+        localStorage.removeItem('profile');
+        this.userProfile = undefined;
     };
     ;
     Auth = __decorate([

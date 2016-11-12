@@ -36,7 +36,7 @@ switch ($m) {
 
         switch ($a) {
             case 'get':
-                    echo $service->get();
+                    echo $service->get($p);
                 break;
 
             default:
@@ -56,7 +56,7 @@ switch ($m) {
                 break;
 
             default:
-                    echo $service->save($p);
+                    echo $service->save($p,$_POST['text'],$_POST['update']);
                 break;
         }
         break;

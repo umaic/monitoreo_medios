@@ -33,13 +33,13 @@ class NewsService
     /**
      * Get news
      *
-     * @params array Parameters arary
+     * @params string Parameters string separated by pipe
      */
-    public function get($params=array()) {
+    public function get($params) {
 
-        extract($params);
+        list($source,$date) = explode('|', $params);
 
-        $sql = 'SELECT * FROM news';
+        $sql = "SELECT * FROM news WHERE source='$source' AND DATE(cdate) = '$date'";
         $rs = $this->db->open($sql);
 
         $news = array();

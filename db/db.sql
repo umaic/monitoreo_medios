@@ -1,21 +1,20 @@
-CREATE TABLE `news` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` text NOT NULL,
-  `link` text NOT NULL,
-  `description` text NOT NULL,
-  `labels` text NOT NULL,
-  `source` varchar(255) NOT NULL,
-  `cdate` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE IF NOT EXISTS `oraculo`.`news` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `title` TEXT NOT NULL,
+  `link` TEXT NOT NULL,
+  `description` TEXT NOT NULL,
+  `labels` TEXT NOT NULL,
+  `source` VARCHAR(255) NOT NULL,
+  `cdate` DATETIME NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
 
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `record`
---
-ALTER TABLE `news`
-  ADD PRIMARY KEY (`id`);
-
---
+CREATE TABLE IF NOT EXISTS `oraculo`.`user_parameter` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `user_id` TEXT NOT NULL,
+  `key` VARCHAR(20) NOT NULL,
+  `value` TEXT NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;

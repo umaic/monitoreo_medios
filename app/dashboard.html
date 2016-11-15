@@ -1,14 +1,17 @@
 <div class="row" *ngIf="auth.authenticated()">
     <div id="left" class="col-md-2 col-sm-3">
-        <div class="btn-group btn-group-justified" role="group" aria-label="...">
+        <div class="btn-group-vertical" role="group" aria-label="...">
+            <div class="btn-group" role="group" *ngIf="news">
+                <button type="button" (click)="getNews(true)" class="btn btn-primary btn-block">Aplicar diccionario</button>
+            </div>
             <div class="btn-group" role="group">
-                <a routerLink="/diccionario" class="btn btn-default"><i class="fa fa-book"></i> Diccionario</a>
+                <a routerLink="/diccionario" class="btn btn-default"><i class="fa fa-edit"></i> Editar diccionario</a>
             </div>
             <div class="btn-group" role="group">
                 <button type="button" class="btn btn-default" (click)="auth.logout()"><i class="fa fa-sign-out"></i> Salir</button>
             </div>
         </div>
-        <br />
+        <br /><br /><h4>Consultar noticias</h4>
         <form>
             <div class="form-group">
                 <select class="form-control" (change)="onSiteChange($event.target.value)">

@@ -12,8 +12,8 @@ export class NewsService {
 
     constructor(private http: Http) { }
 
-    getNews(spider: string, date: string): Promise<News[]> {
-        return this.http.get(this.doUrl + '/get/' + spider + '|' + date)
+    getNews(spider: string, date: string, diccionario:number): Promise<News[]> {
+        return this.http.get(this.doUrl + '/get/' + spider + '|' + date + '|' + diccionario)
             .toPromise()
             .then(response => response.json() as News[])
             .catch(this.handleError);

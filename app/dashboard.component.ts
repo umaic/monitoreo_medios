@@ -41,10 +41,10 @@ export class DashboardComponent implements OnInit {
     this.spider = spider;
   }
 
-  getNews(): void {
+  getNews(diccionario = 0): void {
     if (this.spider != '')
     {
-        this.newsService.getNews(this.spider, this.date).then(news => {
+        this.newsService.getNews(this.spider, this.date, diccionario).then(news => {
             this.news = news;
             //$('#news_table').DataTable();
             });

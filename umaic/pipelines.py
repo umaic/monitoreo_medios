@@ -47,7 +47,6 @@ class MySQLStorePipeline(object):
 
     def process_item(self, item, spider):
         # run db query in thread pool
-        print item
         query = self.dbpool.runInteraction(self._conditional_insert, item)
         return item
 

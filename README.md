@@ -7,4 +7,5 @@
 5. A partir de ./umaic/settings-sample.py crear settings.py y cambiar valores
 6. A partir de ./libraries/mysql-sample.php crear mysql.php y cambiar valores
 7. Debe estar instalado Node.js y npm
-8. Clonar el repositorio y ejecutar $npm install
+8. Clonar el repositorio y ejecutar: $npm install
+9. $npm start

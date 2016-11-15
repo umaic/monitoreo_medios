@@ -1,0 +1,11 @@
+ <div class="jumbotron" *ngIf="!auth.authenticated()">
+  <h1>Bienvenido a Oraculo!</h1>
+  <p>
+      "Un hombre no trata de verse en el agua que corre, sino en el agua tranquila,
+      porque solamente lo que en sí es tranquilo puede dar tranquilidad a otros" --- Confucio
+  </p>
+  <p>
+      <button class="btn btn-primary btn-margin" (click)="auth.login()">Por favor, ingrese al sistema</button>
+  </p>
+</div>
+<router-outlet></router-outlet>

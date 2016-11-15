@@ -19,7 +19,7 @@ export class DiccionarioService {
     }
 
     private handleError(error: any): Promise<any> {
-        console.log('aa');
+        console.log('handleError function');
         return Promise.reject(error.message || error);
     }
 
@@ -29,10 +29,11 @@ export class DiccionarioService {
         let options = new RequestOptions({ headers: headers });
 
         let data='text=' + diccionario.text + '&update=' + diccionario.update;
-        //console.log(diccionario.text);
 
-        //return this.http.post(this.doUrl + '/save/' + localStorage.getItem('user_id') + '|' + diccionario.text + '|' + diccionario.update, this.headers)
-        return this.http.post(this.doUrl + '/save/' + localStorage.getItem('user_id'), data , options);
+        // post devuelve un observable, es necesario suscribirse para ejecutar
+        // la inicialización
+        return this.http.post(this.doUrl + '/save/' + localStorage.getItem('user_id'), data , options)
+              .subscribe(r=>{});
     }
 
        /*

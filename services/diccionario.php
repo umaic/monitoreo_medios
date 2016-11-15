@@ -72,7 +72,7 @@ class DiccionarioService
         } else {
             $sql = "UPDATE $this->table SET `value` = '$value' WHERE `key`='$this->key' AND `user_id` = '$user_id'";
         }
-echo $sql;
+
         $this->db->Execute($sql);
 
         return json_encode('1');

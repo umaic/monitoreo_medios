@@ -22,7 +22,7 @@ $service_dir = $config['services'];
 
 // Parametro $m = modulo
 // Parametro $a = accion
-// Parametro $p = parametros separados por |
+// Parametro $p = parametros separados por ~
 extract($_GET);
 
 header('Content-Type: application/json');

@@ -13,7 +13,7 @@ export class NewsService {
     constructor(private http: Http) { }
 
     getNews(spider: string, date: string, diccionario:number): Promise<News[]> {
-        return this.http.get(this.doUrl + '/get/' + spider + '|' + date + '|' + diccionario)
+        return this.http.get(this.doUrl + '/get/' + spider + '~' + date + '~' + diccionario + '~' + localStorage.getItem('user_id'))
             .toPromise()
             .then(response => response.json() as News[])
             .catch(this.handleError);
@@ -21,6 +21,6 @@ export class NewsService {
 
     private handleError(error: any): Promise<any> {
         console.log('aa');
-        return Promise.reject(error.message || error);
+        return Promise.reject(error.message ~~ error);
     }
 }

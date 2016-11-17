@@ -25,7 +25,7 @@ class DiccionarioService
 
         $this->lib_dir = $config['libraries'];
 
-        require $this->lib_dir."/factory.php";
+        include_once($this->lib_dir."/factory.php");
 
         $this->config = $config;
         $this->db = Factory::create('mysql');
